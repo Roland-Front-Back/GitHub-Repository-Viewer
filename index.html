@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Repository Viewer</title>
+
+    <!-- CSS link -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JS link -->
+    <script defer src="assets/js/script.js"></script>
+  </head>
+  <body>
+    <header id="title">GitHub Repository Viewer</header>
+    <main>
+      <div class="search-container">
+        <input
+          id="username-input"
+          class="username-input"
+          type="text"
+          name="username"
+          placeholder="Enter GitHub username"
+        />
+        <button id="search-btn" class="btn">Search</button>
+      </div>
+      <div id="user-profile" class="user-profile"></div>
+      <div id="repository-list" class="repository-list"></div>
+    </main>
+  </body>
+</html>
