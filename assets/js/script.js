@@ -11,6 +11,7 @@ const fetchUser = async (username) => {
       throw new Error("User not found!");
     }
     const data = await res.json();
+    console.log("This is for the user", data);
     showProfileResults(data);
   } catch (err) {
     userProfileContainer.innerHTML = `<div class="error-div"><p class="error">${err.message}&#128556</p></div>`;
@@ -24,7 +25,8 @@ const fetchRepos = async (username) => {
       throw new Error("Failed to fetch repo-lists");
     }
     const data = await res.json();
-    console.log(data);
+    console.log("This is for the user repo list", data);
+    showRepoResults(data);
   } catch (err) {
     console.log(err);
   }
@@ -63,7 +65,32 @@ const showProfileResults = (data) => {
 };
 
 const showRepoResults = (data) => {
-  const { name } = data;
+  repositoryListContainer.innerHTML = data
+    .map((data) => {
+      const {
+        name,
+        html_url,
+        description,
+        stargazers_count,
+        forks_count,
+        updated_at,
+        language,
+      } = data;
+      return `
+    <div class="repo-div">
+    <div class="repo-link"><a href="${html_url}" target="_blank" class="repo-name">${name}</a>
+    <span class="repo-lang">Language: ${language}</span>
+    </div>
+    <div class="repo-desc">Description: ${description}</div>
+    <div class="repo-footer">
+    <span class="repo-star">Stars: ${stargazers_count}</span>
+    <span class="repo-fork">Forks: ${forks_count}</span>
+    <span class="repo-update">Updated: ${updated_at}</span>
+    </div>
+    </div>
+    `;
+    })
+    .join("");
 };
 
 searchBtn.addEventListener("click", () => {
