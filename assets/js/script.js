@@ -4,6 +4,7 @@ const repositoryListContainer = document.getElementById(
   "repository-list-container"
 );
 
+// Handles days of the publish update
 const getRelativeTime = (dateString) => {
   const date = new Date(dateString);
   const now = new Date();
@@ -27,6 +28,7 @@ const getRelativeTime = (dateString) => {
   return "just now";
 };
 
+// Handles description text limit
 const truncateDescription = (text, maxLength = 45) => {
   if (!text) return "No description available";
 
@@ -54,6 +56,7 @@ const fetchUser = async (username) => {
   }
 };
 
+// Display to page
 const showProfileResults = (data) => {
   const {
     login,
@@ -172,6 +175,7 @@ searchBtn.addEventListener("click", () => {
   fetchRepos(usernameInput);
 });
 
+// Use Pop-ups to avoid unecessary div to the container
 const showPopup = (message, isError = false) => {
   const popup = document.createElement("div");
   popup.className = "popup-overlay";
