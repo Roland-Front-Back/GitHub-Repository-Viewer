@@ -1,6 +1,4 @@
-markdown
-Copy
-# GitHub Rpository Viewer 🔍
+GitHub Rpository Viewer 🔍
 
 A sleek, futuristic GitHub profile search application that displays user information and repositories with a neon-inspired UI.
 
