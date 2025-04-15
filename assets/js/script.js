@@ -4,31 +4,53 @@ const repositoryListContainer = document.getElementById(
   "repository-list-container"
 );
 
+const getRelativeTime = (dateString) => {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffInSeconds = Math.floor((now - date) / 1000);
+
+  const intervals = {
+    year: 31536000,
+    month: 2592000,
+    day: 86400,
+    hour: 3600,
+    minute: 60,
+  };
+
+  for (const [unit, seconds] of Object.entries(intervals)) {
+    const interval = Math.floor(diffInSeconds / seconds);
+    if (interval >= 1) {
+      return `${interval} ${unit}${interval === 1 ? "" : "s"} ago`;
+    }
+  }
+
+  return "just now";
+};
+
+const truncateDescription = (text, maxLength = 45) => {
+  if (!text) return "No description available";
+
+  if (text.length <= maxLength) return text;
+
+  return text.substring(0, maxLength).trim() + "...";
+};
+
 const fetchUser = async (username) => {
+  const loadingPopup = showPopup("Loading user profile...");
+
   try {
     const res = await fetch(`https://api.github.com/users/${username}`);
     if (!res.ok) {
       throw new Error("User not found!");
     }
     const data = await res.json();
-    console.log("This is for the user", data);
+    document.body.removeChild(loadingPopup);
     showProfileResults(data);
   } catch (err) {
-    userProfileContainer.innerHTML = `<div class="error-div"><p class="error">${err.message}&#128556</p></div>`;
-  }
-};
-
-const fetchRepos = async (username) => {
-  try {
-    const res = await fetch(`https://api.github.com/users/${username}/repos`);
-    if (!res.ok) {
-      throw new Error("Failed to fetch repo-lists");
-    }
-    const data = await res.json();
-    console.log("This is for the user repo list", data);
-    showRepoResults(data);
-  } catch (err) {
-    console.log(err);
+    document.body.removeChild(loadingPopup);
+    showPopup(`${err.message} &#128556;`, true);
+    userProfileContainer.innerHTML = "";
+    repositoryListContainer.innerHTML = "";
   }
 };
 
@@ -64,9 +86,33 @@ const showProfileResults = (data) => {
   `;
 };
 
+const fetchRepos = async (username) => {
+  try {
+    const res = await fetch(
+      `https://api.github.com/users/${username}/repos?sort=updated$per_page=10`
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch repo-lists");
+    }
+    const data = await res.json();
+    showRepoResults(data);
+  } catch (err) {
+    showPopup("Failed to load repositories", true);
+  }
+};
+
 const showRepoResults = (data) => {
-  repositoryListContainer.innerHTML = data
-    .map((data) => {
+  if (data.length === 0) {
+    repositoryListContainer.innerHTML = `<div class="error-div"><p class="error">No repositories found</p></div>`;
+    return;
+  }
+
+  const recentRepos = [...data]
+    .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+    .slice(0, 10);
+
+  repositoryListContainer.innerHTML = recentRepos
+    .map((repo) => {
       const {
         name,
         html_url,
@@ -75,32 +121,88 @@ const showRepoResults = (data) => {
         forks_count,
         updated_at,
         language,
-      } = data;
+      } = repo;
       return `
-    <div class="repo-div">
-    <div class="repo-link"><a href="${html_url}" target="_blank" class="repo-name">${name}</a>
-    <span class="repo-lang">Language: ${language}</span>
-    </div>
-    <div class="repo-desc">Description: ${description}</div>
-    <div class="repo-footer">
-    <span class="repo-star">Stars: ${stargazers_count}</span>
-    <span class="repo-fork">Forks: ${forks_count}</span>
-    <span class="repo-update">Updated: ${updated_at}</span>
-    </div>
-    </div>
-    `;
+        <div class="repo-div">
+          <div class="repo-link">
+            <a href="${html_url}" target="_blank" class="repo-name">${name}</a>
+            <span class="repo-lang" data-language="${language}">&#128218Language: ${language}</span>
+          </div>
+          <div class="repo-desc">&#128196Description: ${truncateDescription(
+            description
+          )}</div>
+          <div class="repo-footer">
+            <span class="repo-star">&#127775Stars: ${stargazers_count}</span>
+            <span class="repo-fork">&#128205Forks: ${forks_count}</span>
+            <span class="repo-update">&#127793Updated: ${getRelativeTime(
+              updated_at
+            )}</span>
+          </div>
+        </div>
+      `;
     })
     .join("");
+
+  if (data.length > 10) {
+    repositoryListContainer.innerHTML += `
+      <div class="view-more-container">
+        <p>Showing 10 of ${data.length} repositories</p>
+        <a href="https://github.com/${data[0].owner.login}?tab=repositories" 
+           target="_blank" 
+           class="view-more-btn">
+          View All on GitHub
+        </a>
+      </div>
+    `;
+  }
 };
 
 searchBtn.addEventListener("click", () => {
   const usernameInput = document.getElementById("username-input").value.trim();
 
   if (!usernameInput) {
-    alert("Please enter a username!");
+    showPopup("Please enter a username!", true);
     return;
   }
+
+  userProfileContainer.innerHTML = "";
+  repositoryListContainer.innerHTML = "";
 
   fetchUser(usernameInput);
   fetchRepos(usernameInput);
 });
+
+const showPopup = (message, isError = false) => {
+  const popup = document.createElement("div");
+  popup.className = "popup-overlay";
+  popup.innerHTML = `
+    <div class="popup-content">
+      <button class="popup-close">&times;</button>
+      <div class="popup-text">${message}</div>
+    </div>
+  `;
+
+  document.body.appendChild(popup);
+
+  // Close popup when clicking X or anywhere outside
+  popup.querySelector(".popup-close").addEventListener("click", () => {
+    document.body.removeChild(popup);
+  });
+
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) {
+      document.body.removeChild(popup);
+    }
+  });
+
+  // Auto-close error messages after 2 seconds
+  if (isError) {
+    setTimeout(() => {
+      if (document.body.contains(popup)) {
+        document.body.removeChild(popup);
+      }
+    }, 2000);
+  }
+
+  return popup;
+};
