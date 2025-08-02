@@ -1,7 +1,7 @@
 <div id="top">
 
 <!-- HEADER STYLE: COMPACT -->
-<img src="readmeai/assets/logos/purple.svg" width="30%" align="left" style="margin-right: 15px">
+<img src="assets/img/logo-clear-icon.png" width="15%" align="left" style="margin-right: 15px">
 
 # GITHUB-REPOSITORY-VIEWER
 
