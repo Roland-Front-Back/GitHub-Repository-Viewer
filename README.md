@@ -21,24 +21,33 @@
 
 1. [☀️ Table of Contents](#️-table-of-contents)
 2. [🌞 Overview](#-overview)
-3. [🔥 Features](#-features)
-4. [🌅 Project Structure](#-project-structure)  
+3. [🚀 Live Demo](#-live-demo)
+4. [🔥 Features](#-features)
+5. [🌅 Project Structure](#-project-structure)  
    4.1. [🌄 Project Index](#-project-index)
-5. [🚀 Getting Started](#-getting-started)  
+6. [🚀 Getting Started](#-getting-started)  
    5.1. [🌟 Prerequisites](#-prerequisites)  
    5.2. [⚡ Installation](#-installation)  
    5.3. [🔆 Usage](#-usage)  
    5.4. [🌠 Testing](#-testing)
-6. [🌻 Roadmap](#-roadmap)
-7. [🤝 Contributing](#-contributing)
-8. [📜 License](#-license)
-9. [✨ Acknowledgments](#-acknowledgments)
+7. [🌻 Roadmap](#-roadmap)
+8. [🤝 Contributing](#-contributing)
+9. [📜 License](#-license)
+10. [✨ Acknowledgments](#-acknowledgments)
 
 ---
 
 ## 🌞 Overview
 
 **GitHub Repository Viewer 🔍** is a web app that lets you explore GitHub profiles and repositories through a stylish and responsive interface. It pulls live data using the GitHub API and presents it with an elegant neon-inspired UI. Just enter a username and explore profile details, top repositories, language insights, and more.
+
+---
+
+## 🚀 Live Demo
+
+Try it now: [GitHub Repository Viewer 🔍 — Live Demo](https://roland-front-back.github.io/GitHub-Repository-Viewer/)
+
+> 💡 Enter any GitHub username to preview profile info and repositories instantly.
 
 ---
 
