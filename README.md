@@ -1,79 +1,185 @@
-GitHub Rpository Viewer 🔍
+<div id="top">
 
-A sleek, futuristic GitHub profile search application that displays user information and repositories with a neon-inspired UI.
+<!-- HEADER STYLE: COMPACT -->
+<img src="readmeai/assets/logos/purple.svg" width="30%" align="left" style="margin-right: 15px">
 
-Features ✨
+# GITHUB-REPOSITORY-VIEWER
 
-- Search any GitHub username
-- Display user profile information:
-  - Avatar
-  - Bio
-  - Location
-  - Social stats (repos, followers, following)
-- Show latest 10 repositories (sorted by most recent update)
-- Responsive design that works on all devices
-- Beautiful neon-themed UI with glowing effects
-- Loading states and error handling
+<em>A sleek, futuristic web app to search and view GitHub user profiles and their repositories.</em>
 
-Technologies Used 🛠️
+<!-- BADGES -->
+<img src="https://img.shields.io/github/license/Roland-Front-Back/GitHub-Repository-Viewer?style=plastic&logo=opensourceinitiative&logoColor=white&color=blueviolet" alt="license">
+<img src="https://img.shields.io/github/last-commit/Roland-Front-Back/GitHub-Repository-Viewer?style=plastic&logo=git&logoColor=white&color=blueviolet" alt="last-commit">
+<img src="https://img.shields.io/github/languages/top/Roland-Front-Back/GitHub-Repository-Viewer?style=plastic&color=blueviolet" alt="repo-top-language">
+<img src="https://img.shields.io/github/languages/count/Roland-Front-Back/GitHub-Repository-Viewer?style=plastic&color=blueviolet" alt="repo-language-count">
 
-- HTML5
-- CSS3 (with custom properties and animations)
-- JavaScript (ES6+)
-- GitHub API
+<em>Built with HTML, CSS, and JavaScript using futuristic neon styling ✨</em>
 
-Installation 💻
+<br clear="left"/>
 
-1. Clone the repository:
-```bash
-git clone https://github.com/your-username/github-profile-finder.git
-Open index.html in your browser
+## ☀️ Table of Contents
 
-(No dependencies or build steps required - works directly in the browser!)
+1. [☀️ Table of Contents](#️-table-of-contents)
+2. [🌞 Overview](#-overview)
+3. [🔥 Features](#-features)
+4. [🌅 Project Structure](#-project-structure)  
+   4.1. [🌄 Project Index](#-project-index)
+5. [🚀 Getting Started](#-getting-started)  
+   5.1. [🌟 Prerequisites](#-prerequisites)  
+   5.2. [⚡ Installation](#-installation)  
+   5.3. [🔆 Usage](#-usage)  
+   5.4. [🌠 Testing](#-testing)
+6. [🌻 Roadmap](#-roadmap)
+7. [🤝 Contributing](#-contributing)
+8. [📜 License](#-license)
+9. [✨ Acknowledgments](#-acknowledgments)
 
-How to Use 🚀
-Enter a GitHub username in the search field
+---
 
-Click "Search" or press Enter
+## 🌞 Overview
 
-View the user's profile information and latest repositories
+**GitHub Repository Viewer 🔍** is a web app that lets you explore GitHub profiles and repositories through a stylish and responsive interface. It pulls live data using the GitHub API and presents it with an elegant neon-inspired UI. Just enter a username and explore profile details, top repositories, language insights, and more.
 
-Click on any repository to open it on GitHub
+---
 
-Customization 🎨
-You can easily customize the colors by editing the CSS variables in the :root selector:
+## 🔥 Features
 
-css
-Copy
-:root {
-  --Main-bg-color: #0a0a12;
-  --Text-primary: #e0e0ff;
-  --Accent-purple: #7f00ff;
-  --Accent-blue: #00f0ff;
-  /* ... */
-}
-API Usage ℹ️
-This project uses GitHub's public API:
+- 🔍 **Search GitHub users by username**
+- 📄 **Display user profile info** (bio, location, avatar, followers, etc.)
+- 📁 **Show recent repositories** with:
+  - Language tag
+  - Star & Fork counts
+  - Last updated time
+- ⚠️ **Error popups** for invalid usernames
+- ⚡ **Responsive design** for mobile and desktop
+- 🧠 **Auto-scroll container with styled scrollbars**
+- 💫 **Neon-glow animated effects**
 
-User data: https://api.github.com/users/{username}
+---
 
-Repositories: https://api.github.com/users/{username}/repos
+## 🌅 Project Structure
 
-Note: The API has rate limits (60 requests per hour for unauthenticated requests).
+```sh
+GitHub-Repository-Viewer/
+├── assets/
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       └── script.js
+├── index.html
+└── README.md
+```
 
-Future Improvements 🔮
-Add authentication for higher API rate limits
+## 🌄 Project Index
 
-Implement repository sorting options
+<details open> <summary><b><code>GITHUB-REPOSITORY-VIEWER/</code></b></summary> <blockquote> <div class='directory-path' style='padding: 8px 0; color: #666;'> <code><b>⦿ __root__</b></code> <table style='width: 100%; border-collapse: collapse;'> <thead> <tr style='background-color: #f8f9fa;'> <th style='width: 30%; text-align: left; padding: 8px;'>File Name</th> <th style='text-align: left; padding: 8px;'>Summary</th> </tr> </thead> <tr style='border-bottom: 1px solid #eee;'> <td style='padding: 8px;'><b><a href='https://github.com/Roland-Front-Back/GitHub-Repository-Viewer/blob/main/index.html'>index.html</a></b></td> <td style='padding: 8px;'>Main HTML entry point with UI container and structure</td> </tr> <tr style='border-bottom: 1px solid #eee;'> <td style='padding: 8px;'><b>styles.css</b></td> <td style='padding: 8px;'>CSS with futuristic neon design and responsiveness</td> </tr> <tr> <td style='padding: 8px;'><b>script.js</b></td> <td style='padding: 8px;'>JavaScript logic for API fetch, display, interactivity</td> </tr> </table> </blockquote> </details>
 
-Add dark/light mode toggle
+## 🚀 Getting Started
 
-Add local search history
+## 🌟 Prerequisites
 
-Contributing 🤝
-Contributions are welcome! Please open an issue or pull request.
+All you need is a modern web browser and internet access.
 
-License 📄
-This project is licensed under the MIT License.
+### ⚡ Installation
 
-Made with ❤️ and JavaScript
+```sh
+# Clone the repository
+git clone https://github.com/Roland-Front-Back/GitHub-Repository-Viewer.git
+
+# Navigate to the project directory
+cd GitHub-Repository-Viewer
+```
+
+## 🔆 Usage
+
+Simply open the index.html file in any browser:
+
+```sh
+# In terminal
+open index.html
+```
+
+Or deploy to GitHub Pages or any static host.
+
+## 🌠 Testing
+
+No test framework is required for this static project. You can manually test by:
+
+- Searching for valid/invalid GitHub usernames
+
+- Resizing the window for responsiveness
+
+- Checking neon hover and animation behaviors
+
+## 🌻 Roadmap
+
+- [x] GitHub User Profile Fetching
+
+- [x] Repository Listing with Language & Stars
+
+- [x] Mobile Responsiveness
+
+- [x] Error Handling with Popup
+
+- [ ] Pagination or Infinite Scroll for Repositories
+
+- [ ] Theme Switcher (Dark ↔ Light)
+
+- [ ] Favorite Profiles Bookmarking
+
+## 🤝 Contributing
+
+- 💬 Join the Discussions
+
+- 🐛 Report Issues
+
+- 💡 Submit Pull Requests
+
+<details> <summary>Contributing Guidelines</summary>
+
+1. Fork the repository.
+
+2. Clone it locally:
+
+```sh
+git clone https://github.com/your-username/GitHub-Repository-Viewer.git
+```
+
+3. Create a new branch:
+
+```sh
+git checkout -b feature/new-feature
+```
+
+4. Make your changes.
+
+5. Commit and push:
+
+```sh
+git commit -m "Add new feature"
+git push origin feature/new-feature
+```
+
+6. Open a pull request with details.
+
+</details>
+<br>
+<details> <summary>Contributor Graph</summary> <p align="left"> <a href="https://github.com/Roland-Front-Back/GitHub-Repository-Viewer/graphs/contributors"> <img src="https://contrib.rocks/image?repo=Roland-Front-Back/GitHub-Repository-Viewer"> </a> </p> </details>
+
+## 📜 License
+
+Licensed under the [MIT License](LICENSE).
+
+See LICENSE for full info.
+
+## ✨ Acknowledgments
+
+- GitHub REST API
+
+- Orbitron & Rajdhani Fonts
+
+- Shields.io for badges
+
+- Contributors and users for testing and feedback 💜
+
+ <div align="right"> <a href="#top">🔝 Back to top</a> </div>
